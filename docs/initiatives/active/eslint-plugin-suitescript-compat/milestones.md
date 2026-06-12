@@ -56,7 +56,7 @@ Create a working ESLint plugin skeleton with the first reliable rule: detecting 
 - [x] Implemented
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
-- [ ] PR opened
+- [x] PR opened
 - [ ] Merged
 
 ## M2: Version And Module Compatibility Rules
