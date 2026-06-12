@@ -115,7 +115,7 @@ Add checks for ambiguous SuiteScript version annotations and 2.1-only module usa
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
 - [x] PR opened
-- [ ] Merged
+- [x] Merged
 
 ## M3: Syntax Compatibility Rule
 
@@ -148,11 +148,11 @@ Add conservative SuiteScript 2.0 syntax compatibility checks.
 
 ### Acceptance Criteria
 
-- [ ] `no-2-1-syntax-in-2-0` flags a conservative initial syntax list for `2.0` and `2.x` scripts.
-- [ ] The rule does not flag explicitly `2.1` scripts for those syntax forms.
-- [ ] Parser-error strategy is documented in rule docs.
-- [ ] Tests cover each syntax node in the initial list.
-- [ ] Rule docs explain that this is an ES5.1 compatibility check, not a complete NetSuite runtime emulator.
+- [x] `no-2-1-syntax-in-2-0` flags a conservative initial syntax list for `2.0` and `2.x` scripts.
+- [x] The rule does not flag explicitly `2.1` scripts for those syntax forms.
+- [x] Parser-error strategy is documented in rule docs.
+- [x] Tests cover each syntax node in the initial list.
+- [x] Rule docs explain that this is an ES5.1 compatibility check, not a complete NetSuite runtime emulator.
 
 ### Required Validation
 
@@ -167,10 +167,10 @@ Add conservative SuiteScript 2.0 syntax compatibility checks.
 ### Status
 
 - [ ] Not started
-- [ ] Implemented
-- [ ] Conformance reviewed
-- [ ] Adversarially reviewed
-- [ ] PR opened
+- [x] Implemented
+- [x] Conformance reviewed
+- [x] Adversarially reviewed
+- [x] PR opened
 - [ ] Merged
 
 ## M4: Config Presets And Usage Documentation

@@ -19,6 +19,10 @@ test("exports milestone rules", () => {
     typeof plugin.rules["no-2-1-modules-in-2-0"].create,
     "function"
   );
+  assert.equal(
+    typeof plugin.rules["no-2-1-syntax-in-2-0"].create,
+    "function"
+  );
 });
 
 test("loads through ESLint's plugin configuration", () => {
@@ -33,6 +37,7 @@ test("loads through ESLint's plugin configuration", () => {
     },
     rules: {
       "suitescript-compat/no-2-1-modules-in-2-0": "error",
+      "suitescript-compat/no-2-1-syntax-in-2-0": "error",
       "suitescript-compat/require-entrypoint-jsdoc": "error",
       "suitescript-compat/require-explicit-api-version": [
         "error",
