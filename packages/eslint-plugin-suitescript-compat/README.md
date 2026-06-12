@@ -18,8 +18,73 @@ Oracle.
 - `suitescript-compat/require-explicit-api-version`
 - `suitescript-compat/require-entrypoint-jsdoc`
 
+## Configs Included
+
+- `suitescriptCompat.configs.recommended`
+- `suitescriptCompat.configs.strict`
+
+`recommended` enables lower-noise checks intended for regular CI:
+
+- `suitescript-compat/require-entrypoint-jsdoc`
+- `suitescript-compat/no-2-1-modules-in-2-0`
+
+`strict` enables every current rule and requires explicit `@NApiVersion 2.0`
+or `2.1` instead of `2.x`.
+
+## Installation And Configuration
+
+This package is private while release posture is under review. In this
+repository, `npm install` links the workspace package for local development.
+For external evaluation before a release decision, install from a local checkout
+or package path rather than publishing to npm:
+
+```sh
+npm install /path/to/netsuite/packages/eslint-plugin-suitescript-compat
+```
+
+From an external project, use the installed package name in an ESLint flat
+config:
+
+```js
+const suitescriptCompat = require("eslint-plugin-suitescript-compat");
+
+module.exports = [
+  {
+    files: ["SuiteScripts/**/*.js"],
+    ...suitescriptCompat.configs.recommended,
+    settings: {
+      suitescript: {
+        entrypointGlobs: ["SuiteScripts/**/*.js"],
+        defaultScriptContext: "server"
+      }
+    }
+  }
+];
+```
+
+When evaluating from this repository root without installing into another
+project, replace the package import with
+`require("./packages/eslint-plugin-suitescript-compat")`.
+
+For stricter migration work, use `suitescriptCompat.configs.strict`.
+
+## Limitations
+
+The rules use file-local JSDoc, module dependency arrays, and parser-visible
+syntax. They do not read NetSuite accounts, deployment records, File Cabinet
+metadata, or customer-specific project state. Parser settings must be modern
+enough for syntax rules to inspect modern JavaScript; older parser settings can
+fail before custom rules run.
+
 ## Local Validation
 
 ```sh
 npm test
+```
+
+Preset fixture lint commands:
+
+```sh
+npx eslint --config packages/eslint-plugin-suitescript-compat/fixtures/presets/recommended/eslint.config.cjs packages/eslint-plugin-suitescript-compat/fixtures/presets/recommended/valid-user-event.js
+npx eslint --config packages/eslint-plugin-suitescript-compat/fixtures/presets/strict/eslint.config.cjs packages/eslint-plugin-suitescript-compat/fixtures/presets/strict/valid-user-event.js
 ```

@@ -171,7 +171,7 @@ Add conservative SuiteScript 2.0 syntax compatibility checks.
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
 - [x] PR opened
-- [ ] Merged
+- [x] Merged
 
 ## M4: Config Presets And Usage Documentation
 
@@ -203,11 +203,11 @@ Expose recommended and strict ESLint configurations and document local usage.
 
 ### Acceptance Criteria
 
-- [ ] `recommended` includes low-noise rules only.
-- [ ] `strict` includes explicit version policy and syntax compatibility checks.
-- [ ] README or package docs explain installation, configuration, and limitations.
-- [ ] Example config demonstrates project settings for entrypoint globs and script context.
-- [ ] Manual fixture lint run succeeds with both presets.
+- [x] `recommended` includes low-noise rules only.
+- [x] `strict` includes explicit version policy and syntax compatibility checks.
+- [x] README or package docs explain installation, configuration, and limitations.
+- [x] Example config demonstrates project settings for entrypoint globs and script context.
+- [x] Manual fixture lint run succeeds with both presets.
 
 ### Required Validation
 
@@ -222,9 +222,9 @@ Expose recommended and strict ESLint configurations and document local usage.
 ### Status
 
 - [ ] Not started
-- [ ] Implemented
-- [ ] Conformance reviewed
-- [ ] Adversarially reviewed
+- [x] Implemented
+- [x] Conformance reviewed
+- [x] Adversarially reviewed
 - [ ] PR opened
 - [ ] Merged
 
