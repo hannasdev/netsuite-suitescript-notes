@@ -1,42 +1,19 @@
 "use strict";
 
+const {
+  SUITESCRIPT_TAGS,
+  getFileHeaderJsdocComments,
+  getModuleFactoryArgument,
+  getPropertyName,
+  hasJsdocTag,
+  isFunctionNode
+} = require("../utils/suitescript");
+
 const USER_EVENT_ENTRY_POINTS = new Set([
   "beforeLoad",
   "beforeSubmit",
   "afterSubmit"
 ]);
-
-const SUITESCRIPT_TAGS = {
-  apiVersion: "NApiVersion",
-  scriptType: "NScriptType"
-};
-
-function getCommentText(comment) {
-  return comment && typeof comment.value === "string" ? comment.value : "";
-}
-
-function isJsdocBlock(sourceCode, comment) {
-  return sourceCode.text.slice(comment.range[0], comment.range[0] + 3) === "/**";
-}
-
-function getFileHeaderJsdocComments(sourceCode) {
-  const firstStatement = sourceCode.ast.body[0];
-  const headerEnd = firstStatement ? firstStatement.range[0] : sourceCode.text.length;
-
-  return sourceCode
-    .getAllComments()
-    .filter(
-      (comment) =>
-        comment.type === "Block" &&
-        comment.range[1] <= headerEnd &&
-        isJsdocBlock(sourceCode, comment)
-    );
-}
-
-function hasJsdocTag(comments, tagName) {
-  const tagPattern = new RegExp(`@${tagName}\\b`);
-  return comments.some((comment) => tagPattern.test(getCommentText(comment)));
-}
 
 function normalizeFilename(filename) {
   return filename.replaceAll("\\", "/");
@@ -95,22 +72,6 @@ function filenameMatchesEntrypointGlob(context) {
   });
 }
 
-function getPropertyName(property) {
-  if (!property || property.type === "SpreadElement") {
-    return null;
-  }
-
-  if (property.key.type === "Identifier") {
-    return property.key.name;
-  }
-
-  if (property.key.type === "Literal") {
-    return String(property.key.value);
-  }
-
-  return null;
-}
-
 function hasUserEventReturnObject(node) {
   if (!node || node.type !== "ObjectExpression") {
     return false;
@@ -123,34 +84,6 @@ function hasUserEventReturnObject(node) {
 
 function hasUserEventReturnStatement(node) {
   return Boolean(node.argument && hasUserEventReturnObject(node.argument));
-}
-
-function isModuleLoaderCall(node) {
-  return (
-    node.callee &&
-    node.callee.type === "Identifier" &&
-    (node.callee.name === "define" || node.callee.name === "require")
-  );
-}
-
-function getModuleFactoryArgument(node) {
-  if (!isModuleLoaderCall(node)) {
-    return null;
-  }
-
-  return node.arguments.find(
-    (argument) =>
-      argument.type === "FunctionExpression" ||
-      argument.type === "ArrowFunctionExpression"
-  );
-}
-
-function isFunctionNode(node) {
-  return (
-    node.type === "FunctionDeclaration" ||
-    node.type === "FunctionExpression" ||
-    node.type === "ArrowFunctionExpression"
-  );
 }
 
 function isEntrypointCandidate(context, fileHeaderComments, state) {

@@ -57,7 +57,7 @@ Create a working ESLint plugin skeleton with the first reliable rule: detecting 
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
 - [x] PR opened
-- [ ] Merged
+- [x] Merged
 
 ## M2: Version And Module Compatibility Rules
 
@@ -91,12 +91,12 @@ Add checks for ambiguous SuiteScript version annotations and 2.1-only module usa
 
 ### Acceptance Criteria
 
-- [ ] `require-explicit-api-version` can flag `@NApiVersion 2.x` when configured.
-- [ ] `no-2-1-modules-in-2-0` flags `N/llm`, `N/pgp`, and server-side `N/crypto/random` in `2.0` or `2.x` scripts.
-- [ ] The module rule does not flag those modules in explicitly `2.1` scripts.
-- [ ] `N/crypto/random` behavior is covered for server, client, and unknown contexts.
-- [ ] Rule messages name the detected API version and module.
-- [ ] Rule docs explain that diagnostics are based on file annotations and documented module availability; account-level execution preferences do not by themselves make a `2.0` or `2.x` file safe to use 2.1-only modules.
+- [x] `require-explicit-api-version` can flag `@NApiVersion 2.x` when configured.
+- [x] `no-2-1-modules-in-2-0` flags `N/llm`, `N/pgp`, and server-side `N/crypto/random` in `2.0` or `2.x` scripts.
+- [x] The module rule does not flag those modules in explicitly `2.1` scripts.
+- [x] `N/crypto/random` behavior is covered for server, client, and unknown contexts.
+- [x] Rule messages name the detected API version and module.
+- [x] Rule docs explain that diagnostics are based on file annotations and documented module availability; account-level execution preferences do not by themselves make a `2.0` or `2.x` file safe to use 2.1-only modules.
 
 ### Required Validation
 
@@ -111,9 +111,9 @@ Add checks for ambiguous SuiteScript version annotations and 2.1-only module usa
 ### Status
 
 - [ ] Not started
-- [ ] Implemented
-- [ ] Conformance reviewed
-- [ ] Adversarially reviewed
+- [x] Implemented
+- [x] Conformance reviewed
+- [x] Adversarially reviewed
 - [ ] PR opened
 - [ ] Merged
 

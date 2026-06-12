@@ -11,8 +11,10 @@ Oracle, NetSuite, SuiteScript, and related names belong to their respective
 owners. This package is not affiliated with, endorsed by, or sponsored by
 Oracle.
 
-## Rule Included In This Milestone
+## Rules Included
 
+- `suitescript-compat/no-2-1-modules-in-2-0`
+- `suitescript-compat/require-explicit-api-version`
 - `suitescript-compat/require-entrypoint-jsdoc`
 
 ## Local Validation
