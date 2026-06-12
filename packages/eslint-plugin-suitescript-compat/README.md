@@ -14,6 +14,7 @@ Oracle.
 ## Rules Included
 
 - `suitescript-compat/no-2-1-modules-in-2-0`
+- `suitescript-compat/no-2-1-syntax-in-2-0`
 - `suitescript-compat/require-explicit-api-version`
 - `suitescript-compat/require-entrypoint-jsdoc`
 
