@@ -1,0 +1,13 @@
+{
+  "name": "netsuite-suitescript-notes",
+  "private": true,
+  "workspaces": [
+    "packages/eslint-plugin-suitescript-compat"
+  ],
+  "scripts": {
+    "test": "npm test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}
