@@ -225,7 +225,7 @@ Expose recommended and strict ESLint configurations and document local usage.
 - [x] Implemented
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
-- [ ] PR opened
+- [x] PR opened
 - [ ] Merged
 
 ## M5: Examples And Release Decision
