@@ -10,6 +10,20 @@ const ruleTester = new RuleTester({
   }
 });
 
+const SERVER_SCRIPT_TYPES = [
+  { name: "Bundle Installation", tag: "BundleInstallationScript" },
+  { name: "Custom Tool", tag: "CustomToolScript" },
+  { name: "Map/Reduce", tag: "MapReduceScript" },
+  { name: "Mass Update", tag: "MassUpdateScript" },
+  { name: "Portlet", tag: "Portlet" },
+  { name: "RESTlet", tag: "RESTlet" },
+  { name: "Scheduled Script", tag: "ScheduledScript" },
+  { name: "SDF Installation", tag: "SDFInstallationScript" },
+  { name: "Suitelet", tag: "Suitelet" },
+  { name: "User Event", tag: "UserEventScript" },
+  { name: "Workflow Action", tag: "WorkflowActionScript" }
+];
+
 ruleTester.run("no-2-1-modules-in-2-0", rule, {
   valid: [
     {
@@ -96,6 +110,24 @@ ruleTester.run("no-2-1-modules-in-2-0", rule, {
     }
   ],
   invalid: [
+    ...SERVER_SCRIPT_TYPES.map((scriptType) => ({
+      name: `reports server-side N/crypto/random for ${scriptType.name} scripts`,
+      code: `
+        /**
+         * @NApiVersion 2.0
+         * @NScriptType ${scriptType.tag}
+         */
+        define(["N/crypto/random"], function () {
+          return {};
+        });
+      `,
+      errors: [
+        {
+          messageId: "serverModuleNotSupported",
+          data: { apiVersion: "2.0", moduleId: "N/crypto/random" }
+        }
+      ]
+    })),
     {
       name: "reports N/llm in 2.0 define dependencies",
       code: `
@@ -145,24 +177,6 @@ ruleTester.run("no-2-1-modules-in-2-0", rule, {
         {
           messageId: "moduleNotSupported",
           data: { apiVersion: "2.0", moduleId: "N/llm" }
-        }
-      ]
-    },
-    {
-      name: "reports server-side N/crypto/random from script type",
-      code: `
-        /**
-         * @NApiVersion 2.0
-         * @NScriptType UserEventScript
-         */
-        define(["N/crypto/random"], function () {
-          return {};
-        });
-      `,
-      errors: [
-        {
-          messageId: "serverModuleNotSupported",
-          data: { apiVersion: "2.0", moduleId: "N/crypto/random" }
         }
       ]
     },
