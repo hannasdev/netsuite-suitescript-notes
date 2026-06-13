@@ -5,7 +5,7 @@
     "packages/eslint-plugin-suitescript-compat"
   ],
   "scripts": {
-    "test": "npm test --workspaces --if-present"
+    "test": "node --test \"tests/**/*.test.mjs\" && npm test --workspaces --if-present"
   },
   "devDependencies": {
     "eslint": "^9.0.0"

@@ -20,7 +20,6 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 env:
   PACKAGE_DIR: packages/eslint-plugin-suitescript-compat
@@ -29,6 +28,9 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -72,17 +74,30 @@ jobs:
             echo "NPM_TAG=latest" >> "$GITHUB_ENV"
           fi
 
+          echo "PACKAGE_VERSION=$package_version" >> "$GITHUB_ENV"
+
       - name: Use manual npm dist-tag
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: echo "NPM_TAG=${{ inputs.npm_tag }}" >> "$GITHUB_ENV"
+
+      - name: Check whether package version is already published
+        id: published
+        shell: bash
+        run: |
+          if npm view "${WORKSPACE}@${PACKAGE_VERSION}" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::${WORKSPACE}@${PACKAGE_VERSION} is already published; skipping npm publish."
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Check package contents
         run: npm pack --dry-run --workspace "$WORKSPACE"
 
       - name: Publish dry run
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        if: ${{ steps.published.outputs.published != 'true' && github.event_name == 'workflow_dispatch' && inputs.dry_run }}
         run: npm publish --workspace "$WORKSPACE" --tag "$NPM_TAG" --dry-run
 
       - name: Publish
-        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.dry_run }}
+        if: ${{ steps.published.outputs.published != 'true' && (github.event_name != 'workflow_dispatch' || !inputs.dry_run) }}
         run: npm publish --workspace "$WORKSPACE" --tag "$NPM_TAG"

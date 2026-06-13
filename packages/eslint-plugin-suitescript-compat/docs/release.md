@@ -3,10 +3,32 @@
 This package publishes to npm through GitHub Actions trusted publishing. The
 workflow does not require a long-lived npm automation token.
 
+## One-Time GitHub Setup
+
+The release workflow mirrors the deploy-key release pattern used in
+`mcp-writing`. When a PR is merged to `main`, `.github/workflows/release.yml`
+determines the SemVer increment from conventional commits, commits the workspace
+version bump, and pushes a matching `v*.*.*` tag.
+
+Configure a dedicated release deploy key:
+
+- Generate an SSH keypair for release automation.
+- Add the public key as a repository deploy key with write access.
+- Add the private key as an Actions secret named `RELEASE_DEPLOY_KEY`.
+- Optionally add `RELEASE_DEPLOY_KNOWN_HOSTS` if strict known-host pinning is
+  required beyond GitHub.com defaults.
+- Add the deploy key actor as a bypass actor in the `main` branch ruleset.
+
+Version increments follow conventional commits:
+
+- `fix:` and non-feature changes create a patch release.
+- `feat:` creates a minor release.
+- `feat!:`, `fix!:`, or `BREAKING CHANGE` creates a major release.
+
 ## One-Time npm Setup
 
-Before the first release, configure a trusted publisher for
-`eslint-plugin-suitescript-compat` on npmjs.com:
+Configure a trusted publisher for `eslint-plugin-suitescript-compat` on
+npmjs.com:
 
 - Publisher: GitHub Actions
 - Organization or user: `hannasdev`
@@ -28,15 +50,16 @@ From GitHub Actions, run `Publish npm package` manually with:
 This installs dependencies, runs tests, verifies package contents, and runs
 `npm publish --dry-run` without publishing a package version.
 
-## Publish
+## Publish Flow
 
-For a preview release, update `package.json` to a prerelease version and create
-a matching tag:
+Normal releases are automatic after a PR merge to `main`:
 
-```sh
-git tag v0.1.0-alpha.0
-git push origin v0.1.0-alpha.0
-```
+1. `release.yml` bumps `packages/eslint-plugin-suitescript-compat/package.json`
+   and `package-lock.json`.
+2. `release.yml` commits `Release <version>` back to `main`.
+3. `release.yml` pushes tag `v<version>`.
+4. `release.yml` creates a GitHub release with generated notes.
+5. `publish.yml` runs on the tag and publishes to npm.
 
 Prerelease versions publish with the `next` dist-tag. Stable versions publish
 with the `latest` dist-tag. The workflow refuses to publish when the Git tag does
