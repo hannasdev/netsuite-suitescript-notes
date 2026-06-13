@@ -98,12 +98,16 @@ customer-specific data:
 - `strict/valid-2-1-user-event.js`: valid with the `strict` preset.
 - `strict/invalid-2x-arrow.js`: reports explicit-version policy and syntax
   compatibility diagnostics.
+- `strict/all-rules-by-script-type/`: intentionally invalid files for each
+  supported script type, useful for checking IDE diagnostics with every plugin
+  rule enabled.
 
 To inspect expected diagnostics manually, run:
 
 ```sh
 npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/recommended/invalid-missing-jsdoc.js
 npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/strict/invalid-2x-arrow.js
+npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/strict/all-rules-by-script-type
 ```
 
 Those commands are expected to fail because the files intentionally demonstrate
