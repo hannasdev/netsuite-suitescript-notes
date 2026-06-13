@@ -6,6 +6,7 @@ import { compareSemver, determineIncrement } from "../scripts/release-versioning
 test("detects breaking changes as major releases", () => {
   assert.equal(determineIncrement("feat!: remove legacy option"), "major");
   assert.equal(determineIncrement("fix(parser): tighten behavior\n\nBREAKING CHANGE: rejects old config"), "major");
+  assert.equal(determineIncrement("fix(parser): tighten behavior\n\nBREAKING-CHANGE: rejects old config"), "major");
 });
 
 test("detects features as minor releases", () => {
@@ -16,6 +17,7 @@ test("detects features as minor releases", () => {
 test("falls back to patch releases", () => {
   assert.equal(determineIncrement("fix: correct module detection"), "patch");
   assert.equal(determineIncrement("docs: clarify release process"), "patch");
+  assert.equal(determineIncrement("docs: note no breaking changes"), "patch");
 });
 
 test("compares SemVer releases and prereleases", () => {

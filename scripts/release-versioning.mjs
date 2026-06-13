@@ -48,7 +48,9 @@ export function compareSemver(leftVersion, rightVersion) {
 }
 
 export function determineIncrement(commitLog) {
-  if (/BREAKING CHANGE|^.+!:/gim.test(commitLog)) return "major";
+  if (/^(?:[a-z]+(?:\([^)]+\))?!:|BREAKING[ -]CHANGE:)/gm.test(commitLog)) {
+    return "major";
+  }
   if (/^feat(?:\([^)]+\))?:/gm.test(commitLog)) return "minor";
   return "patch";
 }

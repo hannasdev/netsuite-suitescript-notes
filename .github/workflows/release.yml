@@ -117,8 +117,7 @@ jobs:
           git add "$PACKAGE_DIR/package.json" package-lock.json
           git commit -m "Release ${{ steps.version.outputs.version }}"
           git tag -a "v${{ steps.version.outputs.version }}" -m "Release v${{ steps.version.outputs.version }}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"
-          git push origin "v${{ steps.version.outputs.version }}"
+          git push --atomic origin "HEAD:${GITHUB_REF_NAME}" "v${{ steps.version.outputs.version }}"
 
       - name: Create GitHub release
         env:
