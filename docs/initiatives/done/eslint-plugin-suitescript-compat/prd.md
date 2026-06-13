@@ -2,7 +2,7 @@
 
 ## Status
 
-- State: Active
+- State: Complete
 - Owner: TBD
 - Created: 2026-06-12
 - Related docs:
@@ -65,12 +65,12 @@ The plugin should expose recommended configurations that users can adopt gradual
 
 ## Acceptance Criteria
 
-- [ ] The repository contains a planned ESLint plugin package structure with rule source, tests, and rule docs.
-- [ ] The MVP rules identify missing entry point JSDoc, ambiguous API version annotations, 2.1-only modules in 2.0/2.x scripts, and 2.1 syntax in 2.0/2.x scripts.
-- [ ] Rule docs clearly separate Oracle-documented behavior from project policy or inference.
-- [ ] Tests cover positive and negative examples for each MVP rule.
-- [ ] The plugin can be run locally against fixture files with a documented command.
-- [ ] No rule requires proprietary NetSuite account data or customer-specific metadata.
+- [x] The repository contains a planned ESLint plugin package structure with rule source, tests, and rule docs.
+- [x] The MVP rules identify missing entry point JSDoc, ambiguous API version annotations, 2.1-only modules in 2.0/2.x scripts, and 2.1 syntax in 2.0/2.x scripts.
+- [x] Rule docs clearly separate Oracle-documented behavior from project policy or inference.
+- [x] Tests cover positive and negative examples for each MVP rule.
+- [x] The plugin can be run locally against fixture files with a documented command.
+- [x] No rule requires proprietary NetSuite account data or customer-specific metadata.
 
 ## Risks And Tradeoffs
 
@@ -95,7 +95,7 @@ Use ESLint's rule testing utilities to validate each rule with focused fixtures.
 
 Run the plugin test suite locally before milestone completion and document any manual source review needed for new rules.
 
-## Open Questions
+## Completed Decisions
 
-- [ ] Should the package eventually be published under a personal npm scope, GitHub Packages, or kept source-only? Until this is decided in Milestone 5, the package should use `private: true`.
-- [ ] Which project layouts should be included as first-party examples: SuiteCloud project, File Cabinet export, or generic `src/**/*.js`?
+- [x] Release posture: keep the package private and source-only in M5. See `packages/eslint-plugin-suitescript-compat/docs/release-decision.md`.
+- [x] First-party examples: use generic `SuiteScripts/**/*.js` examples with repository-root validation globs. SuiteCloud-specific and File Cabinet export examples can be added in a future adoption milestone if needed.
