@@ -385,11 +385,6 @@ support each diagnostic, and policy-only checks are labeled as project policy.
 See [docs/adoption.md](docs/adoption.md) for CI examples and the representative
 valid and invalid example scripts under `examples/`.
 
-For installed-project smoke tests, see [playgrounds/](playgrounds/). The
-playgrounds include one project with only this plugin installed and another with
-both this plugin and `eslint-plugin-suitescript` installed, using matching test
-files so IDE diagnostics can be compared side by side.
-
 Release posture is recorded in [docs/release-decision.md](docs/release-decision.md).
 Future rule source review should follow
 [docs/source-review.md](docs/source-review.md).
