@@ -282,5 +282,5 @@ Prepare the plugin for public use by documenting workflows, examples, limitation
 - [x] Implemented
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
-- [ ] PR opened
+- [x] PR opened
 - [ ] Merged
