@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+
 export function parseSemver(version) {
   const match = /^(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?$/.exec(version);
   if (!match) {
@@ -67,7 +70,7 @@ function printUsage() {
   console.error("Usage: release-versioning.mjs increment | assert-not-behind <package-version> <tag-version>");
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const command = process.argv[2];
 
   if (command === "increment") {
