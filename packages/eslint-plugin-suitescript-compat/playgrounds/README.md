@@ -30,10 +30,27 @@ Both lint commands are expected to fail because the files intentionally contain
 diagnostics. The two playgrounds use matching `SuiteScripts/` files so IDE
 diagnostics can be compared side by side.
 
+The `SuiteScripts/all-script-types/` folder covers every script type currently
+classified by this plugin:
+
+- `BundleInstallationScript`
+- `ClientScript`
+- `CustomToolScript`
+- `MapReduceScript`
+- `MassUpdateScript`
+- `Portlet`
+- `Restlet`
+- `ScheduledScript`
+- `SDFInstallationScript`
+- `Suitelet`
+- `UserEventScript`
+- `WorkflowActionScript`
+
 ## Expected File Results
 
 | File | `compat-only` | `compat-plus-suitescript` |
 | --- | --- | --- |
+| `all-script-types/*.js` | Compatibility errors for every covered script type. Server script types also report server-only `N/crypto/random`; `ClientScript` does not. | The same compatibility errors, plus any community-plugin rule differences. At the time this fixture was added, the community plugin also reported `CustomToolScript` as an invalid script type. |
 | `compatibility-risk-user-event.js` | Compatibility errors from this plugin. | The same compatibility errors, plus overlapping community-plugin shape checks where applicable. |
 | `missing-jsdoc-entrypoint.js` | Missing `@NApiVersion` and `@NScriptType` errors from this plugin. | The same missing JSDoc errors from this plugin. |
 | `community-plugin-only-user-event.js` | No errors; this is an intentional negative control for this plugin. | General SuiteScript errors from `eslint-plugin-suitescript`. |
