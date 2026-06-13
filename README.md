@@ -11,9 +11,10 @@ maintained by Oracle or NetSuite.
 
 - [SuiteScript 1.0 vs 2.0 vs 2.1 in NetSuite 2026.1](docs/suitescript-versions-2026-1.md)
 
-## Planned tooling
+## Tooling
 
-- [ESLint plugin for SuiteScript compatibility](docs/initiatives/active/eslint-plugin-suitescript-compat/prd.md)
+- [ESLint plugin for SuiteScript compatibility](packages/eslint-plugin-suitescript-compat/README.md)
+- [Completed initiative notes](docs/initiatives/done/eslint-plugin-suitescript-compat/prd.md)
 
 ## Publishing approach
 

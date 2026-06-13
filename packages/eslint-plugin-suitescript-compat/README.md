@@ -31,15 +31,22 @@ Oracle.
 `strict` enables every current rule and requires explicit `@NApiVersion 2.0`
 or `2.1` instead of `2.x`.
 
+## Public Posture
+
+This is unofficial community tooling for source-backed SuiteScript checks. It
+does not replace NetSuite account validation, deployment records, or Oracle
+documentation. Rule docs link to the repository source note or Oracle pages that
+support each diagnostic, and policy-only checks are labeled as project policy.
+
 ## Installation And Configuration
 
 This package is private while release posture is under review. In this
 repository, `npm install` links the workspace package for local development.
-For external evaluation before a release decision, install from a local checkout
-or package path rather than publishing to npm:
+For external evaluation before a release decision, install ESLint 9 and the
+package from a local checkout or package path rather than publishing to npm:
 
 ```sh
-npm install /path/to/netsuite/packages/eslint-plugin-suitescript-compat
+npm install --save-dev eslint /path/to/netsuite/packages/eslint-plugin-suitescript-compat
 ```
 
 From an external project, use the installed package name in an ESLint flat
@@ -67,6 +74,15 @@ project, replace the package import with
 `require("./packages/eslint-plugin-suitescript-compat")`.
 
 For stricter migration work, use `suitescriptCompat.configs.strict`.
+
+## Adoption Workflows
+
+See [docs/adoption.md](docs/adoption.md) for local-checkout setup, CI examples,
+and the representative valid and invalid example scripts under `examples/`.
+
+Release posture is recorded in [docs/release-decision.md](docs/release-decision.md).
+Future rule source review should follow
+[docs/source-review.md](docs/source-review.md).
 
 ## Limitations
 

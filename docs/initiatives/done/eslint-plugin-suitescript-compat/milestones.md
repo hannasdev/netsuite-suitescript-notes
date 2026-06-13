@@ -226,9 +226,11 @@ Expose recommended and strict ESLint configurations and document local usage.
 - [x] Conformance reviewed
 - [x] Adversarially reviewed
 - [x] PR opened
-- [ ] Merged
+- [x] Merged
 
 ## M5: Examples And Release Decision
+
+Status: Implemented
 
 ### Outcome
 
@@ -258,11 +260,11 @@ Prepare the plugin for public use by documenting workflows, examples, limitation
 
 ### Acceptance Criteria
 
-- [ ] Public docs explain the plugin's unofficial status and source-backed posture.
-- [ ] Example SuiteScript files show representative valid and invalid diagnostics.
-- [ ] Rule documentation includes source links or repository source-note links.
-- [ ] Release decision is recorded, including package registry and versioning approach.
-- [ ] All tests from prior milestones pass before any release preparation.
+- [x] Public docs explain the plugin's unofficial status and source-backed posture.
+- [x] Example SuiteScript files show representative valid and invalid diagnostics.
+- [x] Rule documentation includes source links or repository source-note links.
+- [x] Release decision is recorded, including package registry and versioning approach.
+- [x] All tests from prior milestones pass before any release preparation.
 
 ### Required Validation
 
@@ -277,8 +279,8 @@ Prepare the plugin for public use by documenting workflows, examples, limitation
 ### Status
 
 - [ ] Not started
-- [ ] Implemented
-- [ ] Conformance reviewed
-- [ ] Adversarially reviewed
+- [x] Implemented
+- [x] Conformance reviewed
+- [x] Adversarially reviewed
 - [ ] PR opened
 - [ ] Merged
