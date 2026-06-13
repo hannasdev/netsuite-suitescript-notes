@@ -43,6 +43,10 @@ restart the ESLint server:
 
 ```json
 {
+  "eslint.useFlatConfig": true,
+  "eslint.options": {
+    "overrideConfigFile": "eslint.config.cjs"
+  },
   "eslint.validate": ["javascript"],
   "eslint.workingDirectories": [
     {
@@ -54,3 +58,8 @@ restart the ESLint server:
   ]
 }
 ```
+
+If the ESLint output says it cannot find `.eslintrc.cjs`, VS Code is still using
+a legacy config override from user or workspace settings. Remove that override,
+or keep the `eslint.options.overrideConfigFile` setting above so the extension
+loads `eslint.config.cjs`.

@@ -10,6 +10,10 @@
     }
   ],
   "settings": {
+    "eslint.useFlatConfig": true,
+    "eslint.options": {
+      "overrideConfigFile": "eslint.config.cjs"
+    },
     "eslint.validate": ["javascript"],
     "eslint.workingDirectories": [
       {
