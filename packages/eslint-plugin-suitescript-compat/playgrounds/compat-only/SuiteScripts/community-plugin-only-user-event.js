@@ -1,7 +1,7 @@
 /**
  * Compare diagnostics:
- * - compat-only: should not report this file because it targets 2.1 and has
- *   required SuiteScript tags.
+ * - compat-only: intentionally reports no errors. This file contains general
+ *   SuiteScript lint issues, but no compatibility issues from this plugin.
  * - compat-plus-suitescript: reports general SuiteScript lint issues such as
  *   named AMD module, invalid module, module variable mismatch, N/log import,
  *   log args, extra modules, and missing User Event entry point.
