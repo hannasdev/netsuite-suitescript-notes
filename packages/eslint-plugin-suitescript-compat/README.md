@@ -5,10 +5,10 @@ The plugin helps SuiteScript projects catch version and runtime compatibility
 mistakes in source control before deployment, especially while evaluating or
 migrating between SuiteScript 2.0, `2.x`, and 2.1.
 
-This package is private while rule behavior and release posture are being
-reviewed. Package code is MIT licensed. Repository prose documentation outside
-this package remains under the repository's root CC BY 4.0 license unless a
-future release decision changes that boundary.
+This package is prepared for a public npm preview release. Package code is MIT
+licensed. Repository prose documentation outside this package remains under the
+repository's root CC BY 4.0 license unless a future release decision changes
+that boundary.
 
 Oracle, NetSuite, SuiteScript, and related names belong to their respective
 owners. This package is not affiliated with, endorsed by, or sponsored by
@@ -59,10 +59,15 @@ values and script type interfaces when those tags are present.
 
 ## Quick Start
 
-This package is private while release posture is under review. In this
-repository, `npm install` links the workspace package for local development.
-For external evaluation before a release decision, install ESLint 9 and the
-package from a local checkout or package path rather than publishing to npm:
+Install ESLint 9 and the preview package:
+
+```sh
+npm install --save-dev eslint@^9 eslint-plugin-suitescript-compat@next
+```
+
+In this repository, `npm install` links the workspace package for local
+development. For external evaluation before the first npm release, install the
+package from a local checkout or package path:
 
 ```sh
 npm install --save-dev eslint@^9 /path/to/netsuite/packages/eslint-plugin-suitescript-compat
@@ -385,6 +390,7 @@ support each diagnostic, and policy-only checks are labeled as project policy.
 See [docs/adoption.md](docs/adoption.md) for CI examples and the representative
 valid and invalid example scripts under `examples/`.
 
+Release setup is documented in [docs/release.md](docs/release.md).
 Release posture is recorded in [docs/release-decision.md](docs/release-decision.md).
 Future rule source review should follow
 [docs/source-review.md](docs/source-review.md).

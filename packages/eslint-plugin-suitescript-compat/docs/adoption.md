@@ -8,8 +8,14 @@ metadata.
 
 ## Local Checkout Evaluation
 
-Until a release decision changes package distribution, evaluate the plugin from a
-local checkout in a project that also installs ESLint 9:
+After the preview package is published, install it from npm:
+
+```sh
+npm install --save-dev eslint@^9 eslint-plugin-suitescript-compat@next
+```
+
+Before the first npm release, evaluate the plugin from a local checkout in a
+project that also installs ESLint 9:
 
 ```sh
 npm install --save-dev eslint@^9 /path/to/netsuite/packages/eslint-plugin-suitescript-compat
