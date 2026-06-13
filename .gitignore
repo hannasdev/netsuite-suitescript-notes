@@ -2,3 +2,4 @@
 .idea/
 .vscode/
 node_modules/
+packages/eslint-plugin-suitescript-compat/playgrounds/

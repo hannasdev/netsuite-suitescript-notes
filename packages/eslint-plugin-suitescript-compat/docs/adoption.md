@@ -42,6 +42,21 @@ When evaluating from this repository root, use the example config directly:
 npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/recommended/valid-user-event.js
 ```
 
+## Pairing With General SuiteScript Linting
+
+This package is meant to extend, not replace, the community
+`eslint-plugin-suitescript` package. Use that package for general SuiteScript
+rules such as valid tag values, script type entry point interfaces, module name
+validation, AMD dependency shape, logging conventions, and SuiteScript globals.
+
+Layer this package on top when you want source-backed compatibility checks for
+SuiteScript 2.0, `2.x`, and 2.1:
+
+- missing source annotations on files that look like entry points
+- documented SuiteScript 2.1-only modules in `2.0` or `2.x` scripts
+- conservative SuiteScript 2.0 syntax compatibility risks
+- project policy that requires explicit `2.0` or `2.1` instead of `2.x`
+
 ## Preset Choice
 
 Use `recommended` first for low-noise CI checks:
@@ -83,12 +98,16 @@ customer-specific data:
 - `strict/valid-2-1-user-event.js`: valid with the `strict` preset.
 - `strict/invalid-2x-arrow.js`: reports explicit-version policy and syntax
   compatibility diagnostics.
+- `strict/all-rules-by-script-type/`: intentionally invalid files for each
+  supported script type, useful for checking IDE diagnostics with every plugin
+  rule enabled.
 
 To inspect expected diagnostics manually, run:
 
 ```sh
 npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/recommended/invalid-missing-jsdoc.js
 npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/strict/invalid-2x-arrow.js
+npx eslint --config packages/eslint-plugin-suitescript-compat/examples/eslint.config.cjs packages/eslint-plugin-suitescript-compat/examples/SuiteScripts/strict/all-rules-by-script-type
 ```
 
 Those commands are expected to fail because the files intentionally demonstrate
